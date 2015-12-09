@@ -23,7 +23,7 @@ namespace RobotMinesGame {
 
         public GamePage() {
             this.InitializeComponent();
-            gamePanel.NewGame(1000, 1000, 25);
+            gamePanel.NewGame(1000, 25);
         }
 
         private void gamePageGrid_SizeChanged(object sender, SizeChangedEventArgs e) {

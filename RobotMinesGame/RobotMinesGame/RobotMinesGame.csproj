@@ -115,6 +115,7 @@
     <None Include="RobotMinesGame_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\landmine.png" />
     <Content Include="Assets\robot.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

@@ -14,18 +14,44 @@ using Windows.UI.Xaml.Media.Imaging;
 namespace RobotMinesGame {
 
     class GamePanel : Panel{
-        private int gamePlayHeight;//height of game area in game units
-        private int gamePlayWidth;//Width of game area in game units
+        private int gamePlaySize;//width and height of game area in game units
+        private int robotSize = 100;
+        private int gridRowsAndCols = 12;//width and height of grid
         private List<GameImage> images = new List<GameImage>();
 
-        public void NewGame(int gamePlayHeight, int gamePlayWidth, int numOfMines) {
-            this.gamePlayHeight = gamePlayHeight;
-            this.gamePlayWidth = gamePlayWidth;
+        public void NewGame(int gamePlaySize, int numOfMines) {
+            this.gamePlaySize = gamePlaySize;
+
+            bool[,] grid = new bool[gridRowsAndCols, gridRowsAndCols];//true when occupied
+            Uri mineUri = new Uri("ms-appx:///Assets/landmine.png", UriKind.RelativeOrAbsolute);
+            Random r = new Random();
+            for(int i = 0; i < numOfMines; i++) {
+                int gridX, gridY;
+                do {
+                    gridX = r.Next(0, gridRowsAndCols);
+                    gridY = r.Next(0, gridRowsAndCols);
+                } while(grid[gridX,gridY]);//loop until untaken
+                grid[gridX,gridY] = true;
+
+
+                Image mineImage = new Image();
+                mineImage.Source = new BitmapImage(mineUri);
+                GameImage mine = new GameImage(
+                    mineImage, 
+                    this, 
+                    gridX*(gamePlaySize/gridRowsAndCols),
+                    gridY*(gamePlaySize/gridRowsAndCols),
+                    gamePlaySize/gridRowsAndCols,
+                    gamePlaySize/gridRowsAndCols
+                );
+                Children.Add(mine.img);
+                images.Add(mine);
+            }
 
             Image robotImage = new Image();
-            Uri uri = new Uri("ms-appx:///Assets/robot.png", UriKind.RelativeOrAbsolute);
-            robotImage.Source = new BitmapImage(uri);
-            GameImage robot = new GameImage(robotImage, this, 10, 10, 100, 100);
+            Uri robotUri = new Uri("ms-appx:///Assets/robot.png", UriKind.RelativeOrAbsolute);
+            robotImage.Source = new BitmapImage(robotUri);
+            GameImage robot = new GameImage(robotImage, this, gamePlaySize/10, this.gamePlaySize/10, robotSize, robotSize);
             
             Children.Add(robot.img);
             images.Add(robot);
@@ -53,8 +79,8 @@ namespace RobotMinesGame {
                 this.container = container;
                 this.container.SizeChanged += ContainerSizeChanged;
 
-                this.containerRightX = container.gamePlayHeight;
-                this.containerBottomY = container.gamePlayWidth;
+                this.containerRightX = container.gamePlaySize;
+                this.containerBottomY = container.gamePlaySize;
                 X = x;
                 Y = y;
                 Width = width;
