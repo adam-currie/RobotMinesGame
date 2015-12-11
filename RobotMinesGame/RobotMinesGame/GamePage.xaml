@@ -8,7 +8,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="gamePageGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="gamePageGrid_SizeChanged">
-        <uc:GamePanel x:Name="gamePanel" Height="100" Margin="30" Width="100" Background="#FF6DC3D1" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="1200" MaxHeight="1200"/>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton x:Name="pauseResumeButton" Icon="Pause" Label="Pause/Resume" Click="pauseResumeButton_Click"/>
+            <AppBarButton x:Name="leaderboardButton" Icon="List"  Label="Leaderboard" Click="leaderboardButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="gamePageGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="gamePageGrid_SizeChanged" BorderBrush="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <uc:GamePanel Grid.Column="1" x:Name="gamePanel" Height="100" Margin="0" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="1200" MaxHeight="1200" Background="#FFD6E3E8"/>
+        <StackPanel Grid.Column="0" Margin="0" Background="#CC838383">
+            <TextBlock x:Name="robotXText" TextWrapping="Wrap" Text="Robot X: 0" Margin="0,0,-0.667,0"/>
+            <TextBlock x:Name="robotYText" TextWrapping="Wrap" Text="Robot Y: 0" Margin="0,0,-0.667,0"/>
+            <TextBlock x:Name="minesRemainingText" TextWrapping="Wrap" Text="Mines Remaining: 0" Margin="0,0,-1.667,0"/>
+            <TextBlock x:Name="minesDestroyedText" TextWrapping="Wrap" Text="Mines Destroyed: 0" Margin="0,0,-3.667,0"/>
+            <TextBlock x:Name="timeText" TextWrapping="Wrap" Text="Time Elapsed: 0" Margin="0,0,-8.667,0"/>
+        </StackPanel>
+        <Popup x:Name="namePopup" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-10000">
+            <uc:GetNamePopup HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-10000" Width="200" Height="240" BorderThickness="4" />
+        </Popup>
     </Grid>
 </Page>
