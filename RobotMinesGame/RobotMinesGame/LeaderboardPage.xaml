@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="RobotMinesGame.LeaderboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RobotMinesGame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton x:Name="backButton" Icon="Back" Label="Back" Click="backButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="10">
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="10" BorderBrush="#FF0097FF" BorderThickness="3" Background="#19000000">
+            <Grid x:Name="leaderboardGrid" BorderThickness="0" Padding="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="namePanel" Grid.Column="0" Margin="0">
+                    <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Name" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel x:Name="timePanel" Grid.Column="1" Margin="0">
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Time" FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

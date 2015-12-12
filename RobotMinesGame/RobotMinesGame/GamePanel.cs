@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Sensors;
 using Windows.Foundation;
@@ -55,9 +56,9 @@ namespace RobotMinesGame {
                 
                 //X
                 int newX = robot.X+xChange;
-                if(newX > (int)(GAME_PLAY_SIZE-robot.Height)) {
+                if(newX > (int)(GAME_PLAY_SIZE-robot.Height)) {//boundary check
                     newX = (int)(GAME_PLAY_SIZE-robot.Height);
-                } else if(newX < 0) {
+                } else if(newX < 0) {//boundary check
                     newX = 0;
                 }
                 if(newX != robot.X) {
@@ -67,9 +68,9 @@ namespace RobotMinesGame {
 
                 //Y
                 int newY = robot.Y+yChange;
-                if(newY > (int)(GAME_PLAY_SIZE-robot.Width)) {
+                if(newY > (int)(GAME_PLAY_SIZE-robot.Width)) {//boundary check
                     newY = (int)(GAME_PLAY_SIZE-robot.Width);
-                } else if(newY < 0) {
+                } else if(newY < 0) {//boundary check
                     newY = 0;
                 }
                 if(newY != robot.Y) {
