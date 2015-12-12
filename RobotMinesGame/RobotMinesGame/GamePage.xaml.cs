@@ -28,7 +28,7 @@ namespace RobotMinesGame {
 
         //game settings
         private const int MINE_GRID_SIZE = 15;
-        private int numMines = 25;
+        private int numMines = 1;//debug: change to 30
         private int minesDestroyed;
         private int secondsElapsed;
         private Point robotPos;

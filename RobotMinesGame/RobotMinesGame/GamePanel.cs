@@ -46,10 +46,11 @@ namespace RobotMinesGame {
         }
 
         private async void Tilted(Inclinometer sender, InclinometerReadingChangedEventArgs args) {
-            int xChange = (int)((args.Reading.PitchDegrees*SPEED_FACTOR)+.5);
-            int yChange = (int)((args.Reading.RollDegrees*-SPEED_FACTOR)+.5);
+            InclinometerReading reading = args.Reading;
+            int xChange = (int)((reading.PitchDegrees*SPEED_FACTOR)+.5);
+            int yChange = (int)((reading.RollDegrees*-SPEED_FACTOR)+.5);
 
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.High, () => {
                 bool robotMoved = false;
                 
                 //X
